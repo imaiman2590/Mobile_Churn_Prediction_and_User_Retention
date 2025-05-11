@@ -125,16 +125,12 @@ docker-compose up prometheus
 
 ---
 
-
-
----
-
 ## 🤝 Contributing
 
 1. Fork this repo
 2. Create your feature branch (`git checkout -b feature/my-feature`)
 3. Commit changes (`git commit -am 'Add feature'`)
-4. Push to branch (`git push origin feature/my-feature`)
+4. Push to the branch (`git push origin feature/my-feature`)
 5. Open a pull request
 
 ---
@@ -143,9 +139,4 @@ docker-compose up prometheus
 
 This project is licensed under the MIT License.
 
-```
-
----
-
-Let me know if you'd like me to include GitHub badges (e.g., build status, license) or generate a preview for how it will look on GitHub.
 ```
