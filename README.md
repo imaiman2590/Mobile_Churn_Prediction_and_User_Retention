@@ -1,36 +1,36 @@
 ````markdown
-# 🧠 Real-Time In-Memory Churn Prediction System
+ 🧠 Real-Time In-Memory Churn Prediction System
 
 A machine learning system for churn prediction using Kafka, MSSQL, FastAPI, and Streamlit. Designed to support real-time predictions and feedback-based retraining without relying on disk-based model serialization (`.pkl` or `joblib`).
 
 ---
 
-## 🔍 Features
+ 🔍 Features
 
-### ✅ In-Memory ML Pipeline
+ ✅ In-Memory ML Pipeline
 - Models are trained once at runtime and kept in memory.
 - Supports RandomForest, XGBoost, and LSTM-GRU models.
 - Retrains models periodically using feedback data—no file-based model loading.
 
-### 🔄 Feedback Loop
+ 🔄 Feedback Loop
 - FastAPI-based feedback API for submitting actual churn results.
 - Periodic retraining integrates new data for improved predictions.
 
-### 📡 Kafka Streaming
+ 📡 Kafka Streaming
 - Kafka producer generates user activity events.
 - Kafka consumer ingests data into MSSQL for feature generation.
 
-### 📊 Streamlit Dashboard
+ 📊 Streamlit Dashboard
 - Real-time visualization of churn predictions and activity logs.
 - KPI metrics, prediction trends, and feature monitoring.
 
-### 📈 Prometheus Monitoring
+ 📈 Prometheus Monitoring
 - Tracks model latency and performance via Prometheus.
 - Easy to integrate with Grafana for full observability.
 
 ---
 
-## 📁 Project Structure
+ 📁 Project Structure
 
 ```bash
 churn-prediction/
