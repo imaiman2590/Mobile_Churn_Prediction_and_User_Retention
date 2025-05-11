@@ -1,11 +1,7 @@
-Sure! Here's the full content for your `README.md` file. You can copy and paste this directly into a file named `README.md` in the root of your GitHub repository:
-
----
-
 ````markdown
 # 🧠 Real-Time In-Memory Churn Prediction System
 
-A real-time, fully in-memory machine learning system for churn prediction using Kafka, MSSQL, FastAPI, and Streamlit. Designed to support real-time predictions and feedback-based retraining without relying on disk-based model serialization (`.pkl` or `joblib`).
+A machine learning system for churn prediction using Kafka, MSSQL, FastAPI, and Streamlit. Designed to support real-time predictions and feedback-based retraining without relying on disk-based model serialization (`.pkl` or `joblib`).
 
 ---
 
@@ -124,13 +120,6 @@ docker-compose up prometheus
 * Feedback-driven model improvement pipelines
 
 ---
-
-## 💡 Future Enhancements
-
-* Add support for model versioning & rollback
-* Integrate Grafana dashboards
-* Scale Kafka consumers & predictors
-* Incorporate more behavioral features
 
 ---
 
