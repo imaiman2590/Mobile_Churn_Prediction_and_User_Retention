@@ -1,0 +1,11 @@
+kafka-python
+pyodbc
+pandas
+scikit-learn
+xgboost
+sqlalchemy
+fastapi
+uvicorn
+streamlit
+prometheus_client
+plotly
