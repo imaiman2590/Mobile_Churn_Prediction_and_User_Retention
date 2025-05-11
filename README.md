@@ -3,7 +3,7 @@
 
 A machine learning system for churn prediction using Kafka, MSSQL, FastAPI, and Streamlit. Designed to support real-time predictions and feedback-based retraining without relying on disk-based model serialization (`.pkl` or `joblib`).
 
----
+
 
  🔍 Features
 
@@ -28,11 +28,11 @@ A machine learning system for churn prediction using Kafka, MSSQL, FastAPI, and 
 - Tracks model latency and performance via Prometheus.
 - Easy to integrate with Grafana for full observability.
 
----
+
 
  📁 Project Structure
 
-```bash
+
 churn-prediction/
 ├── producer.py           # Kafka producer for user events
 ├── consumer.py           # Kafka consumer writing to MSSQL
@@ -47,7 +47,7 @@ churn-prediction/
 ├── Dockerfile            # Docker build file
 ├── docker-compose.yml    # Docker service orchestration
 └── prometheus.yml        # Prometheus scraping config
-````
+
 
 ---
 
