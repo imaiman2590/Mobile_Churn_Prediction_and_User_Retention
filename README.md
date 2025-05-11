@@ -1,140 +1,83 @@
-
-
-````markdown
-# 🧠 Real-Time In-Memory Churn Prediction System
-
-A real-time, fully in-memory machine learning system for churn prediction using Kafka, MSSQL, FastAPI, and Streamlit. Designed to support real-time predictions and feedback-based retraining without relying on disk-based model serialization (`.pkl` or `joblib`).
+ **Real-Time In-Memory Churn Prediction System**:
 
 ---
 
-## 🔍 Features
+# 🔄 Real-Time In-Memory Churn Prediction System
 
-### ✅ In-Memory ML Pipeline
-- Models are trained once at runtime and kept in memory.
-- Supports RandomForest, XGBoost, and LSTM-GRU models.
-- Retrains models periodically using feedback data—no file-based model loading.
+A scalable, real-time churn prediction system powered by **Kafka**, **MSSQL**, and **in-memory machine learning models** (Random Forest, XGBoost, LSTM-GRU). This system eliminates `.pkl` and `joblib` files by keeping models in memory, making it ideal for long-running applications with real-time feedback loops.
 
-### 🔄 Feedback Loop
-- FastAPI-based feedback API for submitting actual churn results.
-- Periodic retraining integrates new data for improved predictions.
+## 🚀 Key Features
 
-### 📡 Kafka Streaming
-- Kafka producer generates user activity events.
-- Kafka consumer ingests data into MSSQL for feature generation.
+* **In-Memory Model Serving**: Models are trained and used directly in memory—no file I/O required.
+* **Real-Time Data Ingestion**: Kafka pipelines simulate and consume user behavior data.
+* **Live Prediction + Drift Detection**: Predict churn in real-time and automatically retrain models when drift is detected.
+* **Predictive Feedback Loop**: Collect feedback via a FastAPI service and retrain periodically for improved accuracy.
+* **Live Monitoring Dashboard**: Streamlit dashboard to visualize churn, user activity, and prediction trends.
+* **Prometheus Integration**: Monitor model latency and performance using Prometheus metrics.
 
-### 📊 Streamlit Dashboard
-- Real-time visualization of churn predictions and activity logs.
-- KPI metrics, prediction trends, and feature monitoring.
+## 🧩 Architecture
 
-### 📈 Prometheus Monitoring
-- Tracks model latency and performance via Prometheus.
-- Easy to integrate with Grafana for full observability.
-
----
-
-## 📁 Project Structure
-
-```bash
-churn-prediction/
-├── producer.py           # Kafka producer for user events
-├── consumer.py           # Kafka consumer writing to MSSQL
-├── predictor.py          # Churn predictor with in-memory model
-├── train_model.py        # Model training script
-├── feedback_api.py       # API to collect user feedback
-├── feedback_loop.py      # Periodic model retraining
-├── dashboard/
-│   └── app.py            # Real-time Streamlit dashboard
-├── mssql_config.py       # MSSQL connection config
-├── requirements.txt      # Python dependencies
-├── Dockerfile            # Docker build file
-├── docker-compose.yml    # Docker service orchestration
-└── prometheus.yml        # Prometheus scraping config
-````
-
----
-
-## 🚀 Getting Started
-
-### 1️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
+```
+Kafka Producer → Kafka Consumer → MSSQL → Model (in memory) → Predictions → Feedback API → Retrain Loop
 ```
 
-### 2️⃣ Launch All Services
+Includes:
+
+* Kafka + Zookeeper
+* MSSQL Database
+* Python services: Producer, Consumer, Predictor, Feedback API, Feedback Loop
+* Streamlit Dashboard
+* Prometheus monitoring
+* Docker + Docker Compose orchestration
+
+## 📦 Tech Stack
+
+* Python 3.10
+* Kafka & kafka-python
+* MSSQL + pyodbc
+* Scikit-learn, XGBoost, Keras (LSTM-GRU)
+* Streamlit & Plotly
+* FastAPI & Uvicorn
+* Prometheus for monitoring
+
+## ⚙️ How to Use
+
+Clone the repo and spin up the entire stack using Docker:
 
 ```bash
 docker-compose up --build
 ```
 
-### 3️⃣ Run Dashboard
+Navigate to:
 
-```bash
-streamlit run dashboard/app.py
-```
+* **Dashboard**: `http://localhost:8501`
+* **Feedback API**: `http://localhost:8001/docs`
+* **Prometheus**: `http://localhost:9090`
 
----
-
-## 🔧 Configuration
-
-### MSSQL (`mssql_config.py`)
-
-```python
-def get_mssql_connection():
-    return pyodbc.connect(
-        'DRIVER={ODBC Driver 17 for SQL Server};'
-        'SERVER=localhost;PORT=1433;DATABASE=retention_db;'
-        'UID=your_username;PWD=your_password'
-    )
-```
-
----
-
-## 📦 Tech Stack
-
-* Python (scikit-learn, XGBoost, TensorFlow/Keras)
-* Kafka & Zookeeper
-* FastAPI + Uvicorn
-* Streamlit + Plotly
-* MSSQL
-* Prometheus
-* Docker + Docker Compose
-
----
-
-## 📈 Monitoring
-
-* Prometheus scrapes `/metrics` from the predictor service.
-* Example metric: `model_prediction_latency_seconds`
-
-To run Prometheus:
-
-```bash
-docker-compose up prometheus
-```
-
----
-
-## ✅ Use Cases
-
-* SaaS or gaming user churn prediction
-* Real-time user behavior modeling
-* Feedback-driven model improvement pipelines
-
----
-
-## 🤝 Contributing
-
-1. Fork this repo
-2. Create your feature branch (`git checkout -b feature/my-feature`)
-3. Commit changes (`git commit -am 'Add feature'`)
-4. Push to the branch (`git push origin feature/my-feature`)
-5. Open a pull request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+## 📁 Project Structure
 
 ```
+churn-prediction/
+├── producer.py            # Simulate user activity
+├── consumer.py            # Consume Kafka messages to MSSQL
+├── predictor.py           # In-memory churn prediction
+├── train_model.py         # Model training logic
+├── feedback_api.py        # REST API to submit user feedback
+├── feedback_loop.py       # Periodic model retraining
+├── dashboard/             # Streamlit UI
+│   └── app.py
+├── mssql_config.py        # MSSQL DB connection
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+└── prometheus.yml
+```
+
+## ✅ Highlights
+
+* No model files—training and inference handled completely in RAM.
+* Retraining is automatic when concept/feature drift is detected.
+* Modular design supports rapid experimentation and scaling.
+
+---
+
